@@ -6,7 +6,7 @@ var swiperH = new Swiper('.swiper-container-h', {
         clickable: true,
     },
     history: {
-        key: 'slide',
+        key: '',
       },
       navigation: {
         nextEl: '.swiper-button-next',
