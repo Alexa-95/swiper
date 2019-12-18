@@ -1,0 +1,26 @@
+####################
+##     dirs       ##
+####################
+logs/
+tmp/
+temp/
+_mat/
+.sass-cache/
+node_modules/
+protected/
+images/
+
+####################
+##     files      ##
+####################
+*.log
+*.tmp
+*.scssc
+*.tmp
+*.save
+*.old
+*.s
+.htpasswd
+*.psd
+*.jpg
+*.png
