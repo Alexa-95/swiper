@@ -42,6 +42,7 @@ body {
 .swiper-container-v {
   background: #eee;
 
+
   .swiper-wrapper{
     .swiper-slide{
       &:nth-child(1){
@@ -90,8 +91,65 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  top: 75%;
-  padding: 15px;
+  padding: 50px 15px;
+}
+
+.swiper-slide .photoandart{
+  height: calc(100% - 6vw);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3vw;
+  margin: 3vw;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  position: relative;
+
+  @media (max-width: 767px){
+    flex-direction: column;
+  }
+
+  &-l, &-r{
+    width: 50%;
+    margin: 3vw;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    @media (max-width: 767px){
+      width: calc(100% - 6vw);
+    }
+    img{
+      position: unset;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1vw;
+    }
+    p{
+      text-align: justify;
+      max-height: 710px;
+      overflow: hidden;
+      margin: 1rem;
+
+      @media (max-width: 767px){
+        font-size: 14px;
+        margin: 1rem;
+        max-height: 420px;
+      }
+    }
+  }
+
+  &-l{
+    @media (max-width: 767px){
+      margin-bottom: 0;
+    }      
+  }
+  &-r{
+    @media (max-width: 767px){
+      margin-top: 0;
+    }      
+  }
 }
 
 
