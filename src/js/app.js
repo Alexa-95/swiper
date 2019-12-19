@@ -16,7 +16,9 @@ var swiperH = new Swiper('.swiper-container-h', {
 var swiperV = new Swiper('.swiper-container-v', {
     direction: 'vertical',
     spaceBetween: 50,
-    mousewheel: true,
+    mousewheel: {
+      releaseOnEdges: true
+    },
     pagination: {
         el: '.swiper-pagination-v',
         clickable: true,
