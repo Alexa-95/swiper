@@ -1,6 +1,8 @@
+var space = 50;
+
 var swiperV = new Swiper('.swiper-container-v', {
   direction: 'vertical',
-  spaceBetween: 50,
+  spaceBetween: space,
   mousewheel: true,
   mousewheelControl: true,
   pagination: {
@@ -14,7 +16,7 @@ var swiperV = new Swiper('.swiper-container-v', {
 }
 );
 var swiperH = new Swiper('.swiper-container-h', {
-  spaceBetween: 50,
+  spaceBetween: space,
   // loop: true,
   pagination: {
       el: '.swiper-pagination-h',
@@ -43,46 +45,56 @@ var swiperH = new Swiper('.swiper-container-h', {
 //   swiper.swipeTo($('.swiper-slide[data-url="'+hash+'"]').index());
 // }
 
+function isDescendant(parent, child) {
+  var node = child.parentNode;
+  while (node != null) {
+      if (node == parent) {
+          return true;
+      }
+      node = node.parentNode;
+  }
+  return false;
+}
+
 window.onload = function () {
 
-var vertical = document.querySelectorAll(".swiper-container-v"),
-    horizontal = document.querySelectorAll(".swiper-container-h"),
-    dataHistory = document.querySelectorAll('[data-history]'),
-    active = document.querySelectorAll('.swiper-slide-active'),
-    allSlides = document.querySelectorAll('.swiper-slide'),
-    onScreen = document.querySelectorAll('.__js_onScreen');
+  var vertical = document.querySelectorAll(".swiper-container-v"),
+      horizontal = document.querySelectorAll(".swiper-container-h"),
+      dataHistory = document.querySelectorAll('[data-history]'),
+      dataId = document.querySelectorAll('[data-id]'),
+      active = document.querySelectorAll('.swiper-slide-active'),
+      allSlides = document.querySelectorAll('.swiper-slide'),
+      onScreen = document.querySelectorAll('.__js_onScreen'),
+      wrapper = document.querySelectorAll('.swiper-wrapper')[0],
+      windowWidth = window.innerWidth;
     
       var initSlug = document.location.pathname.split("/").pop();
-      console.log(initSlug)
+      console.log(initSlug);
 
-      for(var i=0; i < dataHistory.length; i++){
-        current = $(document).find("[data-history='" + initSlug + "']")
-        current.addClass('swiper-slide-active')
-        
-        // if(dataHistory[i].dataset.history == initSlug){
-        //   console.log(dataHistory[i].dataset.history)
-        // }
+      if(!initSlug){
+        console.log("EMPTY");
       }
-      console.log(current)
+      else{
+        
+        for(var i=0; i < dataHistory.length; i++){
+          current = $(document).find("[data-history='" + initSlug + "']")
+          current.addClass('swiper-slide-active')
+          
+          if(dataHistory[i].dataset.history == initSlug){
+            console.log(dataHistory[i].dataset.history)
+          }
+        }
+          for(var i=0; i < dataId.length; i++){
+            if(current.closest(dataId[i]).length > 0){
+              console.log(i)
+              wrapper.style.transform = "translate3d(" + (-i*windowWidth - (i*space)) + "px, 0, 0)";
+            }
+            console.log((current.closest(dataId[i])))
+            // if(isDescendant(dataId[i], current) === true){
+            //   console.log(windowWidth)
+            // }
 
-
-
-    // for (var i = 0; i < active.length; i++) {
-    //  var bounding = active[i].getBoundingClientRect();
-    //   // console.log(bounding)      
-    //   if (
-    //     bounding.top >= 0 &&
-    //     bounding.left >= 0 &&
-    //     bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-    //     bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-    //   ) {
-    //     var link = swiperV[i].history.paths.value
-    //     $(active[i]).addClass("__js_onScreen");  
-    //     window.history.pushState(link, link, link);
-    //     console.log(link);
-    //   } else {
-    //     $(this).removeClass("__js_onScreen");
-    //   }
-    // }
-  };
-  
+          }
+        
+      }
+};
