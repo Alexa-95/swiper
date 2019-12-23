@@ -93,8 +93,18 @@ window.onload = function () {
             // if(isDescendant(dataId[i], current) === true){
             //   console.log(windowWidth)
             // }
+<<<<<<< HEAD
 
           }
         
       }
 };
+=======
+
+          }
+        
+      }
+};
+
+
+>>>>>>> 214854eebc6b4907b539471500415e7c36c24a7a
