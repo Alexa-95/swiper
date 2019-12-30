@@ -7527,7 +7527,7 @@
       var swiper = this;
       if (!swiper.history.initialized || !swiper.params.history.enabled) { return; }
       var slide = swiper.slides.eq(index);
-      var value = History.slugify(slide.attr('data-history'));
+      var value = History.slugify(slide.attr('data-hash'));
       if (!win.location.pathname.includes(key)) {
         value = key + "/" + value;
       }
@@ -7554,7 +7554,7 @@
       if (value) {
         for (var i = 0, length = swiper.slides.length; i < length; i += 1) {
           var slide = swiper.slides.eq(i);
-          var slideHistory = History.slugify(slide.attr('data-history'));
+          var slideHistory = History.slugify(slide.attr('data-hash'));
           if (slideHistory === value && !slide.hasClass(swiper.params.slideDuplicateClass)) {
             var index = slide.index();
             swiper.slideTo(index, speed, runCallbacks);
@@ -7633,7 +7633,7 @@
         win.history.replaceState(null, null, (("#" + (swiper.slides.eq(swiper.activeIndex).attr('data-hash'))) || ''));
       } else {
         var slide = swiper.slides.eq(swiper.activeIndex);
-        var hash = slide.attr('data-hash') || slide.attr('data-history');
+        var hash = slide.attr('data-hash') || slide.attr('data-hash');
         doc.location.hash = hash || '';
       }
     },
@@ -7646,7 +7646,7 @@
         var speed = 0;
         for (var i = 0, length = swiper.slides.length; i < length; i += 1) {
           var slide = swiper.slides.eq(i);
-          var slideHash = slide.attr('data-hash') || slide.attr('data-history');
+          var slideHash = slide.attr('data-hash') || slide.attr('data-hash');
           if (slideHash === hash && !slide.hasClass(swiper.params.slideDuplicateClass)) {
             var index = slide.index();
             swiper.slideTo(index, speed, swiper.params.runCallbacksOnInit, true);

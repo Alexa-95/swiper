@@ -20,7 +20,7 @@ const HashNavigation = {
       window.history.replaceState(null, null, (`#${swiper.slides.eq(swiper.activeIndex).attr('data-hash')}` || ''));
     } else {
       const slide = swiper.slides.eq(swiper.activeIndex);
-      const hash = slide.attr('data-hash') || slide.attr('data-history');
+      const hash = slide.attr('data-hash') || slide.attr('data-hash');
       document.location.hash = hash || '';
     }
   },
@@ -33,7 +33,7 @@ const HashNavigation = {
       const speed = 0;
       for (let i = 0, length = swiper.slides.length; i < length; i += 1) {
         const slide = swiper.slides.eq(i);
-        const slideHash = slide.attr('data-hash') || slide.attr('data-history');
+        const slideHash = slide.attr('data-hash') || slide.attr('data-hash');
         if (slideHash === hash && !slide.hasClass(swiper.params.slideDuplicateClass)) {
           const index = slide.index();
           swiper.slideTo(index, speed, swiper.params.runCallbacksOnInit, true);
