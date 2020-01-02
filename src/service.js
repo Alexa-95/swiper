@@ -40,7 +40,7 @@ function isDescendant(parent, child) {
   return false;
 }
 
-window.onpopstate = function () {
+window.onpopstate = function (e) {
 
   var dataHistory = document.querySelectorAll('[data-hash]'),
     dataId = document.querySelectorAll('[data-id]'),
@@ -66,20 +66,18 @@ window.onpopstate = function () {
 
     for (var i = 0; i < dataId.length; i++) {
       if (isDescendant(dataId[i], current) == true) {
-        console.log('Bla ')
         wrapper.style.transform = "translate3d(" + (-i * windowWidth - (i * space)) + "px, 0, 0)";
       }
     }
   }
 };
-window.onload = function () {
+window.onload = function (e) {
   var dataHistory = document.querySelectorAll('[data-hash]'),
     dataId = document.querySelectorAll('[data-id]'),
     wrapper = document.querySelectorAll('.swiper-wrapper')[0],
     windowWidth = window.innerWidth;
 
   var initSlug = document.location.hash;
-  console.log(initSlug);
 
   if (initSlug) {
 
@@ -93,16 +91,15 @@ window.onload = function () {
 
     for (var i = 0; i < dataId.length; i++) {
       if (isDescendant(dataId[i], current) == true) {
-        console.log('Bla ')
         wrapper.style.transform = "translate3d(" + (-i * windowWidth - (i * space)) + "px, 0, 0)";
       }
     }
   }
 };
 
-
 document.querySelectorAll('.swiper-wrapper')[0].addEventListener("transitionend", function (event) {
-  var $arId = document.querySelector('[data-swiper]').getAttribute('data-swiper')
+  var $arId = document.querySelector('[data-swiper]').getAttribute('data-swiper'),
       $item = document.location.hash
   console.log("STATS: "+"gallery", "scroll "+ $arId + " / " + $item);
+
 });
