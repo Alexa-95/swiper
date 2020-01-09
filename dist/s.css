@@ -140,3 +140,14 @@ body {
     transform: scale(0.9); }
   100% {
     transform: scale(0.9); } }
+
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  width: auto;
+  left: unset;
+  right: 10px; }
+
+.swiper-container-vertical > .swiper-pagination-bullets {
+  -ms-transform: none;
+      transform: none;
+  top: unset;
+  bottom: 10px; }

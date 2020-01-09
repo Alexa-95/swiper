@@ -41,7 +41,7 @@ const History = {
     const swiper = this;
     if (!swiper.history.initialized || !swiper.params.history.enabled) return;
     const slide = swiper.slides.eq(index);
-    let value = History.slugify(slide.attr('data-hash'));
+    let value = History.slugify(slide.attr('data-history'));
     if (!window.location.pathname.includes(key)) {
       value = `${key}/${value}`;
     }
@@ -68,7 +68,7 @@ const History = {
     if (value) {
       for (let i = 0, length = swiper.slides.length; i < length; i += 1) {
         const slide = swiper.slides.eq(i);
-        const slideHistory = History.slugify(slide.attr('data-hash'));
+        const slideHistory = History.slugify(slide.attr('data-history'));
         if (slideHistory === value && !slide.hasClass(swiper.params.slideDuplicateClass)) {
           const index = slide.index();
           swiper.slideTo(index, speed, runCallbacks);

@@ -7619,9 +7619,9 @@
     onHashCange: function onHashCange() {
       var swiper = this;
       var newHash = doc.location.hash.replace('#', '');
-      var activeSlideHash = swiper.slides.eq(swiper.activeIndex).attr('data-hash');
+      var activeSlideHash = swiper.slides.eq(swiper.activeIndex).attr('data-history');
       if (newHash !== activeSlideHash) {
-        var newIndex = swiper.$wrapperEl.children(("." + (swiper.params.slideClass) + "[data-hash=\"" + newHash + "\"]")).index();
+        var newIndex = swiper.$wrapperEl.children(("." + (swiper.params.slideClass) + "[data-history=\"" + newHash + "\"]")).index();
         if (typeof newIndex === 'undefined') { return; }
         swiper.slideTo(newIndex);
       }
@@ -7630,10 +7630,10 @@
       var swiper = this;
       if (!swiper.hashNavigation.initialized || !swiper.params.hashNavigation.enabled) { return; }
       if (swiper.params.hashNavigation.replaceState && win.history && win.history.replaceState) {
-        win.history.replaceState(null, null, (("#" + (swiper.slides.eq(swiper.activeIndex).attr('data-hash'))) || ''));
+        win.history.replaceState(null, null, (("#" + (swiper.slides.eq(swiper.activeIndex).attr('data-history'))) || ''));
       } else {
         var slide = swiper.slides.eq(swiper.activeIndex);
-        var hash = slide.attr('data-hash') || slide.attr('data-history');
+        var hash = slide.attr('data-history') || slide.attr('data-history');
         doc.location.hash = hash || '';
       }
     },
@@ -7646,7 +7646,7 @@
         var speed = 0;
         for (var i = 0, length = swiper.slides.length; i < length; i += 1) {
           var slide = swiper.slides.eq(i);
-          var slideHash = slide.attr('data-hash') || slide.attr('data-history');
+          var slideHash = slide.attr('data-history') || slide.attr('data-history');
           if (slideHash === hash && !slide.hasClass(swiper.params.slideDuplicateClass)) {
             var index = slide.index();
             swiper.slideTo(index, speed, swiper.params.runCallbacksOnInit, true);

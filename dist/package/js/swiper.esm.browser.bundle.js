@@ -7425,9 +7425,9 @@ const HashNavigation = {
   onHashCange() {
     const swiper = this;
     const newHash = doc.location.hash.replace('#', '');
-    const activeSlideHash = swiper.slides.eq(swiper.activeIndex).attr('data-hash');
+    const activeSlideHash = swiper.slides.eq(swiper.activeIndex).attr('data-history');
     if (newHash !== activeSlideHash) {
-      const newIndex = swiper.$wrapperEl.children(`.${swiper.params.slideClass}[data-hash="${newHash}"]`).index();
+      const newIndex = swiper.$wrapperEl.children(`.${swiper.params.slideClass}[data-history="${newHash}"]`).index();
       if (typeof newIndex === 'undefined') return;
       swiper.slideTo(newIndex);
     }
@@ -7436,10 +7436,10 @@ const HashNavigation = {
     const swiper = this;
     if (!swiper.hashNavigation.initialized || !swiper.params.hashNavigation.enabled) return;
     if (swiper.params.hashNavigation.replaceState && win.history && win.history.replaceState) {
-      win.history.replaceState(null, null, (`#${swiper.slides.eq(swiper.activeIndex).attr('data-hash')}` || ''));
+      win.history.replaceState(null, null, (`#${swiper.slides.eq(swiper.activeIndex).attr('data-history')}` || ''));
     } else {
       const slide = swiper.slides.eq(swiper.activeIndex);
-      const hash = slide.attr('data-hash') || slide.attr('data-history');
+      const hash = slide.attr('data-history') || slide.attr('data-history');
       doc.location.hash = hash || '';
     }
   },
@@ -7452,7 +7452,7 @@ const HashNavigation = {
       const speed = 0;
       for (let i = 0, length = swiper.slides.length; i < length; i += 1) {
         const slide = swiper.slides.eq(i);
-        const slideHash = slide.attr('data-hash') || slide.attr('data-history');
+        const slideHash = slide.attr('data-history') || slide.attr('data-history');
         if (slideHash === hash && !slide.hasClass(swiper.params.slideDuplicateClass)) {
           const index = slide.index();
           swiper.slideTo(index, speed, swiper.params.runCallbacksOnInit, true);
