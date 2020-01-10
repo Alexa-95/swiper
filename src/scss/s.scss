@@ -1,3 +1,8 @@
+$vertical-margin: 6px;
+$horizontal-margin: 4px;
+
+:root{
+}
 
 html, body {
   position: relative;
@@ -181,12 +186,44 @@ body {
   }
   .swiper-container-horizontal>.swiper-pagination-bullets{
     width: auto;
-    left: unset;
-    right: 10px;
+    left: 10px;
+    right: unset;
+    top: 16px;
+    bottom: unset;
+    margin: 0;
+
+    .swiper-pagination-bullet-active{
+      background-color: #000;
+      opacity: .2;
+    }
   }
 
   .swiper-container-vertical>.swiper-pagination-bullets{
     transform: none;
-    top: unset;
-    bottom: 10px;
+    top: 11px;
+    left: 14px;
+    margin: 0;
+    width: fit-content;
+  }
+
+  .swiper-pagination-bullet{
+    width: 16px;
+    height: 16px;
+  }
+
+  .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+    margin: 0 $horizontal-margin;
+    transition: all 0.2s ease-in;
+
+    &:hover{
+      transform: scale(1.6);
+    }
+  }
+  .swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
+    margin: $vertical-margin 0;
+    transition: all 0.2s ease-in;
+
+    &:hover{
+      transform: scale(1.6);
+    }
   }

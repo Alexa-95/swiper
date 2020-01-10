@@ -3,11 +3,14 @@ var space = 50;
 var swiperV = new Swiper('.swiper-container-v', {
   direction: 'vertical',
   spaceBetween: space,
-  mousewheel: true,
-  mousewheelControl: true,
+  mousewheel: {
+    sensitivity: 1,
+    releaseOnEdges: true
+  },
   pagination: {
     el: '.swiper-pagination-v',
     clickable: true,
+    // dynamicBullets: true,
   },
   history: {
     replaceState: true,
@@ -16,6 +19,10 @@ var swiperV = new Swiper('.swiper-container-v', {
   keyboard: {
     enabled: true,
   },
+  navigation: {
+    nextEl: '.swiper-button-next-v',
+    prevEl: '.swiper-button-prev-v',
+  },
 }
 );
 var swiperH = new Swiper('.swiper-container-h', {
@@ -23,6 +30,7 @@ var swiperH = new Swiper('.swiper-container-h', {
   pagination: {
     el: '.swiper-pagination-h',
     clickable: true,
+    // dynamicBullets: true,
   },
   history: {
     replaceState: true,
@@ -30,7 +38,11 @@ var swiperH = new Swiper('.swiper-container-h', {
   },
   keyboard: {
     enabled: true    
-  }
+  },
+  navigation: {
+    nextEl: '.swiper-button-prev-h',
+    prevEl: '.swiper-button-prev-h',
+  },
 });
 
 function isDescendant(parent, child) {
@@ -50,7 +62,7 @@ function isDescendant(parent, child) {
     windowWidth = window.innerWidth;
 
   var initSlug = document.location.pathname.split("/").pop();
-  console.log("qweqweqwe "+initSlug);
+  console.log("qweqweqwe "+ initSlug);
 
   if (!initSlug || initSlug == "") {
     wrapper.style.transform = "translate3d(0, 0, 0)";
@@ -66,18 +78,25 @@ function isDescendant(parent, child) {
     }
     
     for (var i = 0; i < dataId.length; i++) {
-      console.log(-i * windowWidth)
-
+      
       if (isDescendant(dataId[i], current) == true) {
+
+        //TODO
+        var marginBulletHorizontal = 8;
+
         // console.log(isDescendant(dataId[i], current))
         wrapper.style.transform = "translate3d(" + (-i * windowWidth - (i * space)) + "px, 0, 0)";
-
+        
         var sV = document.querySelectorAll('.swiper-pagination-v');
         var sH = document.querySelector('.swiper-pagination-h');
-        // var bullet = document.querySelector('.swiper-pagination-bullet').clientHeight();
-        console.log(sV[i].clientHeight);
-        sH.style.bottom = sV[i].clientHeight + 10 + "px";
+        var bulletActive = document.querySelector(".swiper-pagination-bullet-active");
+        var bulletsVertical = document.querySelectorAll(".swiper-pagination-v .swiper-pagination-bullet");
+        var containersVertical = document.querySelectorAll(".swiper-container-v");
+        var containersHorizontal = document.querySelectorAll(".swiper-container-h");
         
+        for(var i = 0; i<sV.length; i++){
+          sV[i].style.transform = "translateX(" + ((bulletActive.clientWidth * i) + (marginBulletHorizontal * i)) +"px)";      
+        }        
       }
     }
   }
@@ -113,5 +132,8 @@ document.querySelectorAll('.swiper-wrapper')[0].addEventListener("transitionend"
   var $arId = document.querySelector('[data-swiper]').getAttribute('data-swiper'),
       $item = document.location.pathname.split("/").pop();
   console.log("STATS: "+"gallery", "scroll "+ $arId + " / " + $item);
-});
 
+  for(var i = 0; i<swiperV.length; i++){
+    swiperV[i].mousewheel.enable();
+  }
+});
