@@ -227,3 +227,26 @@ body {
       transform: scale(1.6);
     }
   }
+
+  #navigation{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    .navigation_row{
+      float: left;
+      .navigation_btn{
+        background-color: #333;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        margin: 10px;
+        cursor: pointer;
+        transition: all .2s ease-in;
+        &:hover{
+          background-color: red;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }

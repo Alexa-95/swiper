@@ -178,3 +178,23 @@ body {
   .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet:hover {
     -ms-transform: scale(1.6);
         transform: scale(1.6); }
+
+#navigation {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2; }
+  #navigation .navigation_row {
+    float: left; }
+    #navigation .navigation_row .navigation_btn {
+      background-color: #333;
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      margin: 10px;
+      cursor: pointer;
+      transition: all .2s ease-in; }
+      #navigation .navigation_row .navigation_btn:hover {
+        background-color: red;
+        -ms-transform: scale(1.2);
+            transform: scale(1.2); }

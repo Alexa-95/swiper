@@ -93,6 +93,7 @@ function isDescendant(parent, child) {
         var bulletsVertical = document.querySelectorAll(".swiper-pagination-v .swiper-pagination-bullet");
         var containersVertical = document.querySelectorAll(".swiper-container-v");
         var containersHorizontal = document.querySelectorAll(".swiper-container-h");
+        var spier_slide = document.querySelectorAll(".swiper-container-v .swiper-slide");
         
         for(var i = 0; i<sV.length; i++){
           sV[i].style.transform = "translateX(" + ((bulletActive.clientWidth * i) + (marginBulletHorizontal * i)) +"px)";      
@@ -103,9 +104,12 @@ function isDescendant(parent, child) {
 
 window.onload = function (e) {
   var dataHistory = document.querySelectorAll('[data-history]'),
-    dataId = document.querySelectorAll('[data-id]'),
+    
+    dataId = document.querySelector('[data-id]'),
+    navigation = document.querySelectorAll('.navigation'),
     wrapper = document.querySelectorAll('.swiper-wrapper')[0],
     windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
 
   var initSlug = document.location.pathname.split("/").pop();
 
@@ -123,10 +127,64 @@ window.onload = function (e) {
       if (isDescendant(dataId[i], current) == true) {
         // console.log(isDescendant(dataId[i], current))
         wrapper.style.transform = "translate3d(" + (-i * windowWidth - (i * space)) + "px, 0, 0)";
+
+
+        var navigation_row = document.querySelectorAll(".navigation_row");
+        var navigarion_div = document.navigation.appendChild("navigation_row[i]")
+        console.log(navigarion_div)
+      }
+      for(var j = 0; j < spier_slide.length; j++){
+        var navigation_btn_div = document.createElement("div").classList.add("navigation_btn");
+        // document.navigation_row[i].appendChild(navigation_btn)[j];
       }
     }
   }
+
+  // NAWIGACJA
+
+  for(var i = 0; i<swiperV.length; i++){
+    var swiperV_rows = document.querySelectorAll(".swiper-container-v .swiper-wrapper")[i].children;
+    // console.log(swiperV_rows);
+    var navigation_div = document.querySelector("#navigation");
+    var navigation_row_div = document.createElement("div");
+    navigation_row_div.classList.add("navigation_row")
+    navigation_div.appendChild(navigation_row_div)[i];
+
+
+    for(var j = 0; j<swiperV_rows.length; j++){
+      var navigation_btn_div = document.createElement("div");
+      navigation_btn_div.classList.add("navigation_btn");
+      navigation_row_div.appendChild(navigation_btn_div);  
+
+      navigation_btn_div.addEventListener("click", function(){
+
+        if(document.querySelector(".navigation_btn.__active")){
+          document.querySelector(".navigation_btn.__active").classList.remove("__active");
+        }
+          this.classList.add("__active");
+
+            for(var c = 0; c < document.querySelectorAll(".swiper-container-v .swiper-wrapper").length; c++){
+              if (isDescendant(document.querySelectorAll("#navigation .navigation_row")[c], document.querySelector(".navigation_btn.__active")) == true) {
+                var translateX = (-c * windowWidth - (c * space));
+              
+                for(var d = 0; d<(document.querySelectorAll("#navigation .navigation_row")[c].children[d]); d++){
+
+                  //TODO
+                  if (document.querySelectorAll("#navigation .navigation_row")[c].children[d] == document.querySelector("div.navigation_btn.__active")){
+                    console.log("bla")
+                  }
+                }
+              }
+              }
+              wrapper.style.transform = "translate3d(" + translateX + "px, 0, 0)";
+              // document.querySelectorAll(".swiper-container-v .swiper-wrapper")[c].style.transform = "translate3d( 0," + (-x * windowWidth - (x * space)) + "px, 0)";
+      })
+    }
+  }
 };
+
+
+
 
 document.querySelectorAll('.swiper-wrapper')[0].addEventListener("transitionend", function (event) {
   var $arId = document.querySelector('[data-swiper]').getAttribute('data-swiper'),
@@ -137,3 +195,14 @@ document.querySelectorAll('.swiper-wrapper')[0].addEventListener("transitionend"
     swiperV[i].mousewheel.enable();
   }
 });
+
+
+// for (var i = 0; i < document.querySelector('[data-id]').length; i++) {
+
+//     var navigation = document.querySelectorAll(".navigation_row"),
+//           navigarion_div = document.navigation.appendChild("navigation_row")[i];
+//       console.log(navigarion_div)
+//   }
+
+
+
