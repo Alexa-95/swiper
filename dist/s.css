@@ -30,7 +30,9 @@ body {
     cursor: grabbing; }
 
 .swiper-container-v {
-  background: #eee; }
+  background: #eee;
+  transition-property: transform;
+  transition-duration: 1s; }
   .swiper-container-v .swiper-wrapper .swiper-slide:nth-child(1) {
     background: red;
     background: linear-gradient(180deg, rgba(255, 0, 0, 0.5) 0%, rgba(255, 108, 0, 0.5) 100%); }
@@ -123,24 +125,6 @@ body {
     .swiper-slide .photoandart-r {
       margin-top: 0; } }
 
-@keyframes pulse {
-  0% {
-    transform: scale(0.91); }
-  30% {
-    transform: scale(0.9); }
-  40% {
-    transform: scale(1.08); }
-  50% {
-    transform: scale(0.9); }
-  60% {
-    transform: scale(0.9); }
-  70% {
-    transform: scale(1.01); }
-  80% {
-    transform: scale(0.9); }
-  100% {
-    transform: scale(0.9); } }
-
 .swiper-container-horizontal > .swiper-pagination-bullets {
   width: auto;
   left: 10px;
@@ -168,16 +152,10 @@ body {
 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
   margin: 0 4px;
   transition: all 0.2s ease-in; }
-  .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet:hover {
-    -ms-transform: scale(1.6);
-        transform: scale(1.6); }
 
 .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
   margin: 6px 0;
   transition: all 0.2s ease-in; }
-  .swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet:hover {
-    -ms-transform: scale(1.6);
-        transform: scale(1.6); }
 
 #navigation {
   position: fixed;
@@ -185,16 +163,16 @@ body {
   left: 10px;
   z-index: 2; }
   #navigation .navigation_row {
-    float: left; }
+    float: left;
+    margin: 0 4px; }
     #navigation .navigation_row .navigation_btn {
-      background-color: #333;
-      width: 20px;
-      height: 20px;
-      border-radius: 20px;
-      margin: 10px;
-      cursor: pointer;
-      transition: all .2s ease-in; }
+      margin: 6px 0;
+      transition: all 0.2s ease-in;
+      width: 16px;
+      height: 16px;
+      border-radius: 100%;
+      background: #000;
+      opacity: .2;
+      cursor: pointer; }
       #navigation .navigation_row .navigation_btn:hover {
-        background-color: red;
-        -ms-transform: scale(1.2);
-            transform: scale(1.2); }
+        opacity: .5; }
